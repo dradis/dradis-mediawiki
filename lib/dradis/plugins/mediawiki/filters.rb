@@ -21,7 +21,9 @@ module Dradis::Plugins::Mediawiki::Filters
         }
 
         # Get the results over HTTP
-        Net::HTTP.start(host, port) do |http|
+        port ||= host =~ /^https/ ? 443 : 80
+        uri = URI("#{host}:#{port}")
+        Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
           res = http.get("#{path}?#{filter_params.to_query}")
           xml_doc = Nokogiri::XML( res.body )
           results += xml_doc.xpath('api/query/pages/page').map do |xml_page|

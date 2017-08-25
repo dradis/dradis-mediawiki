@@ -3,9 +3,11 @@ module Dradis::Plugins::Mediawiki::Filters
     def query(params={})
       results = []
 
-      host = Dradis::Plugins::Mediawiki::Engine.settings.host
-      port = Dradis::Plugins::Mediawiki::Engine.settings.port
-      path = Dradis::Plugins::Mediawiki::Engine.settings.path
+      scheme = Dradis::Plugins::Mediawiki::Engine.settings.scheme
+      host   = Dradis::Plugins::Mediawiki::Engine.settings.host
+      port   = Dradis::Plugins::Mediawiki::Engine.settings.port
+      path   = Dradis::Plugins::Mediawiki::Engine.settings.path
+      port   = (scheme == 'https' ? 443 : 80) if port.blank?
 
       begin
         # Parameters required by MediaWiki API
@@ -21,9 +23,7 @@ module Dradis::Plugins::Mediawiki::Filters
         }
 
         # Get the results over HTTP
-        port ||= host =~ /^https/ ? 443 : 80
-        uri = URI("#{host}:#{port}")
-        Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+        Net::HTTP.start(host, port, use_ssl: scheme == 'https') do |http|
           res = http.get("#{path}?#{filter_params.to_query}")
           xml_doc = Nokogiri::XML( res.body )
           results += xml_doc.xpath('api/query/pages/page').map do |xml_page|

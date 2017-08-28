@@ -3,10 +3,11 @@ module Dradis::Plugins::Mediawiki::Filters
     def query(params={})
       results = []
 
-      scheme = Dradis::Plugins::Mediawiki::Engine.settings.scheme
       host   = Dradis::Plugins::Mediawiki::Engine.settings.host
-      port   = Dradis::Plugins::Mediawiki::Engine.settings.port
       path   = Dradis::Plugins::Mediawiki::Engine.settings.path
+      port   = Dradis::Plugins::Mediawiki::Engine.settings.port
+      scheme = Dradis::Plugins::Mediawiki::Engine.settings.scheme
+
       port   = (scheme == 'https' ? 443 : 80) if port.blank?
 
       begin

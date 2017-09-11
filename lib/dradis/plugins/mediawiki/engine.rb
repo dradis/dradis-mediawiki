@@ -1,5 +1,4 @@
 module Dradis::Plugins::Mediawiki
-
   class Engine < ::Rails::Engine
     isolate_namespace Dradis::Plugins::Mediawiki
 
@@ -8,11 +7,11 @@ module Dradis::Plugins::Mediawiki
     description 'Import entries from an external MediaWiki'
 
     addon_settings :wikiimport do
-      settings.default_host      = 'localhost'
-      settings.default_port      = 80
-      settings.default_path      = 'mediawiki/api.php'
       settings.default_fields    = 'Title,Impact,Probability,Description,Recommendation'
+      settings.default_host      = 'localhost'
+      settings.default_path      = 'mediawiki/api.php'
+      settings.default_port      = 443
+      settings.default_scheme    = 'http(s)'
     end
   end
-
 end

@@ -7,7 +7,7 @@ module Dradis::Plugins::Mediawiki::Filters
       path   = Dradis::Plugins::Mediawiki::Engine.settings.path
       port   = Dradis::Plugins::Mediawiki::Engine.settings.port
       scheme = Dradis::Plugins::Mediawiki::Engine.settings.scheme
-      limit = Dradis::Plugins::Mediawiki::Engine.settings.limit
+      limit  = Dradis::Plugins::Mediawiki::Engine.settings.limit
 
       port   = (scheme == 'https' ? 443 : 80) if port.blank?
 

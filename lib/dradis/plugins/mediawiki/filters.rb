@@ -18,7 +18,7 @@ module Dradis::Plugins::Mediawiki::Filters
                prop: 'revisions',
           generator: 'search',
             gsrwhat: 'text',
-          gsrsearch: CGI::escape(params[:query]), # user query
+          gsrsearch: params[:query], # user query
              rvprop: 'content',
              format: 'xml'
         }

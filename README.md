@@ -9,8 +9,7 @@ The idea is to be able to use a MediaWiki as a library of re-usable report entri
 
 The add-on performs a text search against the WikiMedia API. See http://www.mediawiki.org/wiki/API for further reference.
 
-The add-on requires [Dradis CE](https://dradisframework.org/) > 3.0, or [Dradis Pro](https://dradisframework.com/pro/).
-
+The add-on requires [Dradis CE](https://dradis.com/ce/) > 3.0, or [Dradis Pro](https://dradis.com/).
 
 ## More information
 

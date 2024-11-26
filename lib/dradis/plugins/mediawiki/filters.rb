@@ -7,17 +7,19 @@ module Dradis::Plugins::Mediawiki::Filters
       path   = Dradis::Plugins::Mediawiki::Engine.settings.path
       port   = Dradis::Plugins::Mediawiki::Engine.settings.port
       scheme = Dradis::Plugins::Mediawiki::Engine.settings.scheme
+      limit  = Dradis::Plugins::Mediawiki::Engine.settings.limit
 
       port   = (scheme == 'https' ? 443 : 80) if port.blank?
 
       begin
         # Parameters required by MediaWiki API
-        # http://localhost/mediawiki-1.21.1/api.php?action=query&prop=revisions&generator=search&gsrwhat=text&gsrsearch=Directory&rvprop=content&format=xml
+        # http://localhost/mediawiki-1.21.1/api.php?action=query&prop=revisions&generator=search&gsrwhat=text&gsrlimit=max&gsrsearch=Directory&rvprop=content&format=xml
         filter_params = {
              action: 'query',
                prop: 'revisions',
           generator: 'search',
             gsrwhat: 'text',
+           gsrlimit: limit,
           gsrsearch: CGI::escape(params[:query]), # user query
              rvprop: 'content',
              format: 'xml'

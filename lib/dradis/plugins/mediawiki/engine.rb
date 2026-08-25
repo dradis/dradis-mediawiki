@@ -12,6 +12,7 @@ module Dradis::Plugins::Mediawiki
       settings.default_path      = 'mediawiki/api.php'
       settings.default_port      = 443
       settings.default_scheme    = 'http(s)'
+      settings.default_limit     = 'max'
     end
   end
 end

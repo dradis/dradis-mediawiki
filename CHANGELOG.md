@@ -1,3 +1,6 @@
+[v#.#.#] ([month] [YYYY])
+  - Supply its own search box for the Issues page's import box, which Dradis now renders from each import addon
+
 v5.5.0 (November 2026)
   - No changes
 

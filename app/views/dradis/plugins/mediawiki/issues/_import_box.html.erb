@@ -1,0 +1,7 @@
+<%# locals: (plugin:) %>
+<%#
+  # The MediaWiki search on the Issues page's import box. Dradis renders each
+  # import addon's own issues/_import_box; MediaWiki only needs the default
+  # search form for its registered filters (see Filters::FullTextSearch).
+%>
+<%= render 'issues/import_box/filters', plugin: plugin %>
